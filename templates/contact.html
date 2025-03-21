@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us & Help</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/contact.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('forum')}}">Forum</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contact Form -->
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need support, fill out the form below:</p>
+
+        <form id="contactForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" rows="4" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div id="contactMessage"></div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+        <div class="faq">
+            <button class="faq-question">How does the fertilizer recommendation work?</button>
+            <div class="faq-answer">Our system analyzes soil and crop data to suggest the best fertilizers.</div>
+
+            <button class="faq-question">Is this service free?</button>
+            <div class="faq-answer">Yes, the basic recommendations are free for farmers.</div>
+
+            <button class="faq-question">How can I get market prices?</button>
+            <div class="faq-answer">Visit the "Market" page to see updated crop prices.</div>
+        </div>
+    </div>
+
+    <script>
+        // Handle Contact Form Submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            document.getElementById("contactMessage").innerHTML = `<p>Thank you, ${name}! We will get back to you soon. 😊</p>`;
+            document.getElementById("contactForm").reset();
+        });
+
+        // FAQ Toggle Function
+        document.querySelectorAll(".faq-question").forEach(button => {
+            button.addEventListener("click", () => {
+                let answer = button.nextElementSibling;
+                answer.style.display = (answer.style.display === "block") ? "none" : "block";
+            });
+        });
+    </script>
+
+</body>
+</html>

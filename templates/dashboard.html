@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/dashboard.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('recommendation')}}">Recommendation</a></li>
+            <li><a href="{{url_for('cropinfo')}}">Crop & Soil Info</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Multi-Language Support Section -->
+    <div class="language-container">
+        <label for="language">🌍 Choose Language:</label>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+        </select>
+    </div>
+
+    <!-- Location Selection Section (Full Width) -->
+    <div class="location-container">
+        <h3>📍 Select Your Location & Find Soil Testing Centers</h3>
+
+        <label for="state">State:</label>
+        <select id="state" onchange="updateDistricts()">
+            <option value="">-- Select State --</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Karnataka">Karnataka</option>
+        </select>
+
+        <label for="district">District:</label>
+        <select id="district" onchange="updateSoilCenters()">
+            <option value="">-- Select District --</option>
+        </select>
+
+        <label for="soil-center">Soil Testing Centers:</label>
+        <div class="location-input">
+            <select id="soil-center">
+                <option value="">-- Available Centers --</option>
+            </select>
+            <!-- Get Recommendation Button -->
+            <button class="get-recommendation-btn">Get Recommendation</button>
+        </div>
+    </div>
+
+    <!-- Side-by-Side Layout for Dashboard & Weather Section -->
+    <div class="dashboard-wrapper">
+
+        <!-- Dashboard Container (NPK Input Form) -->
+        <div class="dashboard-container">
+            <h2>Welcome, Farmer! 🌾</h2>
+            <p>Enter your soil & crop details to get the best fertilizer recommendations.</p>
+
+            <form class="soil-form">
+                <label>Soil pH Level:</label>
+                <input type="text" placeholder="Enter pH Level" required>
+
+                <label>Nitrogen (N) Level:</label>
+                <input type="text" placeholder="Enter Nitrogen Level" required>
+
+                <label>Phosphorus (P) Level:</label>
+                <input type="text" placeholder="Enter Phosphorus Level" required>
+
+                <label>Potassium (K) Level:</label>
+                <input type="text" placeholder="Enter Potassium Level" required>
+
+                <!-- New Crop Selection Dropdown -->
+                <label>Select Crop:</label>
+                <select required>
+                    <option value="">-- Select Crop --</option>
+                    <option value="wheat">Wheat 🌾</option>
+                    <option value="rice">Rice 🌾</option>
+                    <option value="corn">Corn 🌽</option>
+                    <option value="potato">Potato 🥔</option>
+                    <option value="tomato">Tomato 🍅</option>
+                </select>
+
+                <button type="submit">Get Recommendations</button>
+            </form>
+        </div>
+
+        <!-- Weather Insights Section (Next to Dashboard) -->
+        <div class="weather-container">
+            <h3>📡 Real-Time Weather Insights</h3>
+            <p><strong>Location:</strong> <span id="weather-location">Fetching...</span></p>
+            <p><strong>Temperature:</strong> <span id="weather-temp">--</span>°C</p>
+            <p><strong>Condition:</strong> <span id="weather-condition">--</span></p>
+            <p><strong>Wind Speed:</strong> <span id="weather-wind">--</span> km/h</p>
+        </div>
+    </div>
+
+    <!-- Contact Section (Now Below Weather Section) -->
+    <div class="contact-container">
+        <h3>📞 Contact Us</h3>
+        <p>Need Help? Call us at <strong>+91 XXXXXXXX90</strong></p>
+    </div>
+
+    <!-- Quick Access Links -->
+    <div class="quick-access">
+        <h3>Quick Access</h3>
+        <a href="#">View Past Recommendations</a>
+        <a href="#">Find Nearby Fertilizer Dealers</a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="{{url_for('static', filename='scripts/weather.js')}}"></script>
+    <script src="{{url_for('static', filename='scripts/location.js')}}"></script>
+
+</body>
+</html>

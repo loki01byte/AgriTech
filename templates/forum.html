@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback & Community Forum</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/forum.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('cropinfo')}}">Crop Info</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Feedback Section -->
+    <div class="container">
+        <h2>Give Your Feedback</h2>
+        <form id="feedbackForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" rows="4" required></textarea>
+            
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <div id="feedbackMessage"></div>
+    </div>
+
+    <!-- Community Forum -->
+    <div class="container">
+        <h2>Community Forum</h2>
+        <form id="forumForm">
+            <label for="question">Ask a Question:</label>
+            <input type="text" id="question" required>
+            <button type="submit">Post</button>
+        </form>
+
+        <!-- Forum Discussion Area -->
+        <div id="forumPosts">
+            <h3>Recent Discussions</h3>
+            <p>No questions posted yet.</p>
+        </div>
+    </div>
+
+    <script>
+        // Handle Feedback Submission
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let feedback = document.getElementById("feedback").value;
+            document.getElementById("feedbackMessage").innerHTML = `<p>Thank you, ${name}! Your feedback has been received. 😊</p>`;
+            document.getElementById("feedbackForm").reset();
+        });
+
+        // Handle Forum Post Submission
+        document.getElementById("forumForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let question = document.getElementById("question").value;
+            let forumPosts = document.getElementById("forumPosts");
+            if (forumPosts.innerHTML.includes("No questions posted yet.")) {
+                forumPosts.innerHTML = "<h3>Recent Discussions</h3>";
+            }
+            forumPosts.innerHTML += `<p>🗣 <strong>User:</strong> ${question}</p>`;
+            document.getElementById("forumForm").reset();
+        });
+    </script>
+
+</body>
+</html>

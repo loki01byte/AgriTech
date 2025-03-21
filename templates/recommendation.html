@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/recommendation.css')}}"/>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('cropinfo')}}">Crop & Soil Info</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Recommendation Section -->
+    <div class="container">
+        <h2>Recommended Fertilizer</h2>
+
+        <!-- User Input Summary -->
+        <div class="input-summary">
+            <h3>Your Soil & Crop Data:</h3>
+            <p><strong>Soil pH:</strong> 6.5</p>
+            <p><strong>Nitrogen:</strong> Low</p>
+            <p><strong>Phosphorus:</strong> Medium</p>
+            <p><strong>Potassium:</strong> High</p>
+            <p><strong>Selected Crop:</strong> Wheat 🌾</p>
+            <p><strong>Season:</strong> Winter ❄️</p>
+            <p><strong>Location:</strong> Andhra Pradesh, India 🇮🇳</p>
+        </div>
+
+        <!-- Recommended Fertilizer -->
+        <div class="recommendation-box">
+            <h3>Suggested Fertilizer:</h3>
+            <p><strong>Name:</strong> Urea (46-0-0)</p>
+            <p><strong>Application:</strong> 50kg per acre</p>
+            <p class="npk-values">NPK Ratio: <span class="highlight">46-0-0</span></p>
+        </div>
+
+        <!-- Alternative Fertilizers -->
+        <div class="alternative-box">
+            <h3>Alternative Options:</h3>
+            <ul>
+                <li>Ammonium Nitrate (34-0-0)</li>
+                <li>Diammonium Phosphate (18-46-0)</li>
+                <li>Potassium Sulfate (0-0-50)</li>
+            </ul>
+        </div>
+
+        <!-- Water Requirement Data -->
+        <div class="water-requirement-box">
+            <h3>💧 Water Requirement</h3>
+            <p><strong>Recommended Water Supply:</strong> 35-40 mm per irrigation</p>
+            <p><strong>Irrigation Frequency:</strong> Every 7-10 days</p>
+            <p><strong>Best Watering Time:</strong> Early morning or late evening</p>
+        </div>
+
+        <a href="#" class="btn">Get Another Recommendation</a>
+    </div>
+
+</body>
+</html>

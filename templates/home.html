@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Finder - Home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/home.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('forum')}}">Forum</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Smart Fertilizer Recommendations for Farmers 🌱</h1>
+            <p>Optimize your crop yield with AI-driven insights based on soil and crop data.</p>
+            <a href="{{url_for('dashboard')}}" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>🌾 Crop-Based Recommendations</h3>
+            <p>Get personalized fertilizer suggestions for your crops.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 Real-Time Market Prices</h3>
+            <p>Stay updated with live fertilizer and crop price trends.</p>
+        </div>
+        <div class="feature-card">
+            <h3>☁️ Weather Insights</h3>
+            <p>Plan your farming with accurate weather forecasts.</p>
+        </div>
+    </section>
+
+</body>
+</html>

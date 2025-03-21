@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market & Fertilizer Dealers</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/market.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('recommendation')}}">Recommendation</a></li>
+            <li><a href="{{url_for('cropinfo')}}">Crop & Soil Info</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Market Section -->
+    <div class="container">
+        <h2>Market & Fertilizer Dealers</h2>
+
+        <!-- Search for Fertilizer Dealers -->
+        <label for="location">Search Fertilizer Dealers:</label>
+        <input type="text" id="location" placeholder="Enter your city or area">
+        <button onclick="searchDealers()">Search</button>
+
+        <!-- Dealers List -->
+        <div id="dealersList" class="dealers-list">
+            <h3>Nearby Dealers</h3>
+            <p>Enter location to find dealers.</p>
+        </div>
+
+        <!-- Market Prices for Crops -->
+        <div class="market-prices">
+            <h3>Current Crop Market Prices</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Crop</th>
+                        <th>Price (₹ per kg)</th>
+                    </tr>
+                </thead>
+                <tbody id="marketPrices">
+                    <tr>
+                        <td>Wheat</td>
+                        <td>₹24</td>
+                    </tr>
+                    <tr>
+                        <td>Rice</td>
+                        <td>₹35</td>
+                    </tr>
+                    <tr>
+                        <td>Corn</td>
+                        <td>₹20</td>
+                    </tr>
+                    <tr>
+                        <td>Potato</td>
+                        <td>₹15</td>
+                    </tr>
+                    <tr>
+                        <td>Tomato</td>
+                        <td>₹25</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function searchDealers() {
+            let location = document.getElementById("location").value;
+            let dealersList = document.getElementById("dealersList");
+
+            if (location === "") {
+                dealersList.innerHTML = "<h3>Nearby Dealers</h3><p>Please enter a location.</p>";
+                return;
+            }
+
+            // Dummy Data (Replace with real API data if needed)
+            let dealers = {
+                "Delhi": ["AgriFert Ltd.", "GreenGrow Fertilizers", "KrishiMart"],
+                "Mumbai": ["Farmaid Suppliers", "AgroChemicals Pvt Ltd.", "SoilCare Dealers"],
+                "Bangalore": ["Organic Fertilizers Hub", "Kisan Fertilizer Store", "AgriSupport Services"]
+            };
+
+            let results = dealers[location] || ["No dealers found in this area."];
+
+            dealersList.innerHTML = `<h3>Nearby Dealers in ${location}</h3>`;
+            results.forEach(dealer => {
+                dealersList.innerHTML += `<p>🔹 ${dealer}</p>`;
+            });
+        }
+    </script>
+
+</body>
+</html>

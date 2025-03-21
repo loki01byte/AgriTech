@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop & Soil Information</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/crop-info.css')}}">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>AgriSmart</h1>
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="{{url_for('dashboard')}}">Dashboard</a></li>
+            <li><a href="{{url_for('recommendation')}}">Recommendation</a></li>
+            <li><a href="{{url_for('market')}}">Market</a></li>
+            <li><a href="{{url_for('contact')}}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Crop & Soil Info Section -->
+    <div class="container">
+        <h2>Crop & Soil Information</h2>
+        
+        <!-- Crop Selection Dropdown -->
+        <label for="crop">Select Crop:</label>
+        <select id="crop" onchange="updateCropInfo()">
+            <option value="">-- Select Crop --</option>
+            <option value="wheat">Wheat 🌾</option>
+            <option value="rice">Rice 🌾</option>
+            <option value="corn">Corn 🌽</option>
+            <option value="potato">Potato 🥔</option>
+            <option value="tomato">Tomato 🍅</option>
+        </select>
+
+        <!-- Soil Information Display -->
+        <div class="soil-info" id="soilInfo">
+            <h3>Soil Requirements</h3>
+            <p><strong>Soil pH:</strong> -</p>
+            <p><strong>Nitrogen:</strong> -</p>
+            <p><strong>Phosphorus:</strong> -</p>
+            <p><strong>Potassium:</strong> -</p>
+        </div>
+
+        <!-- Fertilizer Information Display -->
+        <div class="fertilizer-info" id="fertilizerInfo">
+            <h3>Recommended Fertilizer</h3>
+            <p><strong>Name:</strong> -</p>
+            <p><strong>NPK Ratio:</strong> -</p>
+        </div>
+    </div>
+
+    <script>
+        function updateCropInfo() {
+            const crop = document.getElementById("crop").value;
+            const soilInfo = document.getElementById("soilInfo");
+            const fertilizerInfo = document.getElementById("fertilizerInfo");
+
+            let soilData = {
+                wheat: { pH: "6.0 - 7.5", N: "Medium", P: "Medium", K: "High", fertilizer: "Urea (46-0-0)", npk: "46-0-0" },
+                rice: { pH: "5.5 - 7.0", N: "High", P: "Low", K: "Medium", fertilizer: "Ammonium Sulfate (21-0-0)", npk: "21-0-0" },
+                corn: { pH: "5.8 - 7.0", N: "High", P: "Medium", K: "Medium", fertilizer: "DAP (18-46-0)", npk: "18-46-0" },
+                potato: { pH: "5.0 - 6.5", N: "High", P: "High", K: "High", fertilizer: "Potassium Sulfate (0-0-50)", npk: "0-0-50" },
+                tomato: { pH: "6.0 - 7.0", N: "Medium", P: "Medium", K: "Medium", fertilizer: "NPK 10-10-10", npk: "10-10-10" },
+            };
+
+            if (crop in soilData) {
+                soilInfo.innerHTML = `<h3>Soil Requirements</h3>
+                                      <p><strong>Soil pH:</strong> ${soilData[crop].pH}</p>
+                                      <p><strong>Nitrogen:</strong> ${soilData[crop].N}</p>
+                                      <p><strong>Phosphorus:</strong> ${soilData[crop].P}</p>
+                                      <p><strong>Potassium:</strong> ${soilData[crop].K}</p>`;
+
+                fertilizerInfo.innerHTML = `<h3>Recommended Fertilizer</h3>
+                                            <p><strong>Name:</strong> ${soilData[crop].fertilizer}</p>
+                                            <p><strong>NPK Ratio:</strong> ${soilData[crop].npk}</p>`;
+            } else {
+                soilInfo.innerHTML = `<h3>Soil Requirements</h3><p>-</p>`;
+                fertilizerInfo.innerHTML = `<h3>Recommended Fertilizer</h3><p>-</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
